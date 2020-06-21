@@ -20,9 +20,10 @@ class DeckDetails extends Component{
 
     handleQuiz = () => {
         const {deck} = this.props;
-        console.log(deck)
         if (deck.cards.length===0)
-            return this.props.navigation.navigate('NoCards')
+            return this.props.navigation.navigate('NoCards');
+        else
+            return this.props.navigation.navigate('Quiz', {deckID:deck.id});
     }
 
     render() {

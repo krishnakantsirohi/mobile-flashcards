@@ -14,6 +14,7 @@ import DeckDetails from "./components/DeckDetails";
 import {createStackNavigator} from "@react-navigation/stack";
 import AddCard from "./components/AddCard";
 import NoCards from "./components/NoCards";
+import Quiz from "./components/Quiz";
 
 const Tab = Platform.OS==='ios'?createBottomTabNavigator():createMaterialTopTabNavigator();
 const Tabs = () => (
@@ -56,6 +57,7 @@ const StackNav = () => (
         <Stack.Screen name='DeckDetails' component={DeckDetails} options={{headerTintColor:white, headerStyle:{backgroundColor:purple,}}}/>
         <Stack.Screen name='AddCard' component={AddCard} options={{headerTintColor:white, headerStyle:{backgroundColor:purple,}}}/>
         <Stack.Screen name='NoCards' component={NoCards} options={{headerTintColor:white, headerStyle:{backgroundColor:purple,}}}/>
+        <Stack.Screen name='Quiz' component={Quiz} options={{headerTintColor:white, headerStyle:{backgroundColor:purple,}}}/>
     </Stack.Navigator>
 );
 export default function App() {
