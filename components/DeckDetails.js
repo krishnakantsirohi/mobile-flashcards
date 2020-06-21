@@ -18,6 +18,13 @@ class DeckDetails extends Component{
         removeDeck(deck.id);
     }
 
+    handleQuiz = () => {
+        const {deck} = this.props;
+        console.log(deck)
+        if (deck.cards.length===0)
+            return this.props.navigation.navigate('NoCards')
+    }
+
     render() {
         const {deck} = this.props;
 
@@ -41,6 +48,7 @@ class DeckDetails extends Component{
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.startQuizBtn}
+                                      onPress={this.handleQuiz}
                     >
                         <Text style={{color:white, fontSize:18}}>
                             Start Quiz

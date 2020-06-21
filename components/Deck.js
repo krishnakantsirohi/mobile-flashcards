@@ -6,7 +6,6 @@ import {gray, white} from "../utils/colors";
 class Deck extends Component{
     render() {
         const {deck} = this.props;
-        console.log(deck)
         return(
             <View style={styles.container}>
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate(

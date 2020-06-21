@@ -5,7 +5,6 @@ import {fetchDecks} from "../utils/api";
 import {receiveDecks} from "../actions";
 import {AppLoading} from "expo";
 import Deck from "./Deck";
-import {AsyncStorage} from "react-native-web";
 
 class Home extends Component{
     state = {
@@ -28,9 +27,6 @@ class Home extends Component{
         const ids = Object.keys(decks);
         return(
             <ScrollView>
-                <View>
-                    <TouchableOpacity onPress={()=>AsyncStorage.clear()}><Text>Clear StorageS</Text></TouchableOpacity>
-                </View>
                 {
                     ids.map(id => (
                         <Deck key={id} id={id} navigation={this.props.navigation}/>

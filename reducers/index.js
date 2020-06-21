@@ -14,8 +14,6 @@ function decks(state = {}, action) {
                 [deck.id]: deck,
             }
         case DELETE_DECK:
-            console.log(Object.entries(state))
-            console.log(action)
             return Object.entries(state).filter(r=> r[0]!==action.deckID)
 
         case ADD_CARD:
