@@ -10,6 +10,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {FontAwesome, Ionicons} from '@expo/vector-icons'
+import DeckDetails from "./components/DeckDetails";
+import {createStackNavigator} from "@react-navigation/stack";
+import AddCard from "./components/AddCard";
 
 const Tab = Platform.OS==='ios'?createBottomTabNavigator():createMaterialTopTabNavigator();
 const Tabs = () => (
@@ -45,6 +48,14 @@ const Tabs = () => (
         <Tab.Screen name='Add Deck' component={AddDeck} />
     </Tab.Navigator>
 )
+const Stack = createStackNavigator();
+const StackNav = () => (
+    <Stack.Navigator headerMode='screen'>
+        <Stack.Screen name='Home' component={Tabs} options={{headerShown:false}}/>
+        <Stack.Screen name='DeckDetails' component={DeckDetails} options={{headerTintColor:white, headerStyle:{backgroundColor:purple,}}}/>
+        <Stack.Screen name='AddCard' component={AddCard} options={{headerTintColor:white, headerStyle:{backgroundColor:purple,}}}/>
+    </Stack.Navigator>
+);
 export default function App() {
   return (
       <Provider store={createStore(reducer)}>
@@ -52,7 +63,7 @@ export default function App() {
           <StatusBar backgroundColor={purple}/>
         </View>
           <NavigationContainer>
-              <Tabs/>
+              <StackNav />
           </NavigationContainer>
       </Provider>
   );

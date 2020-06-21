@@ -3,7 +3,7 @@ import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native'
 import {gray, white} from "../utils/colors";
 import {connect} from 'react-redux';
 import {addDeck} from "../actions";
-import {addNewDeck, generateUID} from "../utils/api";
+import {generateUID, saveDeck} from "../utils/api";
 
 class AddDeck extends React.Component{
     state = {
@@ -23,7 +23,7 @@ class AddDeck extends React.Component{
             cards: [],
         }
         this.props.dispatch(addDeck(deck));
-        addNewDeck(deck);
+        saveDeck(deck);
     }
 
     render() {
@@ -37,7 +37,7 @@ class AddDeck extends React.Component{
                     placeholder="Deck Title"
                     onChangeText={text => this.handleChange(text)}
                 />
-                <TouchableOpacity style={styles.addBtn} onPress={this.handleSubmit}>
+                <TouchableOpacity style={styles.addBtn} onPress={this.handleSubmit} disabled={this.state.title===''}>
                     <Text style={{alignSelf:'center', color: white, paddingTop:10, fontSize:20}}>
                         Add Deck
                     </Text>

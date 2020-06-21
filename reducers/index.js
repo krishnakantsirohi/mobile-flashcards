@@ -11,9 +11,7 @@ function decks(state = {}, action) {
             const {deck} = action
             return {
                 ...state,
-                [deck.id]: {
-                    deck,
-                }
+                [deck.id]: deck,
             }
         case DELETE_DECK:
             return {

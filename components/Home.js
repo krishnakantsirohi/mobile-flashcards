@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
-import {View, Text, ActivityIndicator, TouchableOpacity, AsyncStorage, ScrollView} from 'react-native'
+import {ScrollView, View, TouchableOpacity, Text} from 'react-native'
 import {connect} from 'react-redux'
 import {fetchDecks} from "../utils/api";
 import {receiveDecks} from "../actions";
 import {AppLoading} from "expo";
 import Deck from "./Deck";
+import {AsyncStorage} from "react-native-web";
 
 class Home extends Component{
     state = {
@@ -26,10 +27,13 @@ class Home extends Component{
             return <AppLoading/>
         const ids = Object.keys(decks);
         return(
-            <ScrollView style={{backgroundColor:'#e0e0e0'}}>
+            <ScrollView>
+                <View>
+                    <TouchableOpacity onPress={()=>AsyncStorage.clear()}><Text>Clear StorageS</Text></TouchableOpacity>
+                </View>
                 {
                     ids.map(id => (
-                        <Deck key={id} id={id}/>
+                        <Deck key={id} id={id} navigation={this.props.navigation}/>
                     ))
                 }
             </ScrollView>
