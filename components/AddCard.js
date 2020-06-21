@@ -3,6 +3,7 @@ import {TextInput, StyleSheet, Text, TouchableOpacity, KeyboardAvoidingView, Pla
 import {gray, white} from "../utils/colors";
 import {connect} from 'react-redux'
 import {generateUID, saveNewCardToDeck} from "../utils/api";
+import {addCard} from "../actions";
 
 class AddCard extends Component{
 
@@ -36,8 +37,12 @@ class AddCard extends Component{
             answer: this.state.answer,
         }
         saveNewCardToDeck({deckID, card})
-        this.props.dispatch();
+        this.props.dispatch(addCard({deckID, card}));
         this.props.navigation.goBack();
+        this.setState(()=>({
+            question: '',
+            answer: '',
+        }))
     }
 
     render() {

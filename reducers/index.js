@@ -1,4 +1,4 @@
-import {ADD_CARD, ADD_DECK, RECEIVE_CARD, RECEIVE_DECK, DELETE_CARD, DELETE_DECK} from "../actions";
+import {ADD_CARD, ADD_DECK, RECEIVE_DECK, DELETE_DECK} from "../actions";
 
 function decks(state = {}, action) {
     switch (action.type) {
@@ -14,23 +14,21 @@ function decks(state = {}, action) {
                 [deck.id]: deck,
             }
         case DELETE_DECK:
-            return {
-                ...state,
-            }
-        case RECEIVE_CARD:
-            return {
-                ...state,
-                ...action.card
-            }
+            console.log(Object.entries(state))
+            console.log(action)
+            return Object.entries(state).filter(r=> r[0]!==action.deckID)
+
         case ADD_CARD:
+            const {deckID, card} = action;
             return {
                 ...state,
-                ...action.card,
-            }
-        case DELETE_CARD:
-            return {
-                ...state,
-                ...action.card
+                [deckID]: {
+                    ...state[deckID],
+                    cards: [
+                        ...state[deckID].cards,
+                        card
+                    ]
+                }
             }
         default:
             return state;

@@ -24,6 +24,10 @@ class AddDeck extends React.Component{
         }
         this.props.dispatch(addDeck(deck));
         saveDeck(deck);
+        this.setState(()=>({
+            title: '',
+        }))
+        this.props.navigation.navigate('DeckDetails',{deckID:deck.id})
     }
 
     render() {

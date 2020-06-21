@@ -65,11 +65,11 @@ export function saveNewCardToDeck({deckID, card}){
 }
 
 export function removeDeck(key){
-    return AsyncStorage.getItem(DECKS)
+    return AsyncStorage.getItem(FLASHCARD_KEY)
         .then((results)=>{
             const data =JSON.parse(results);
             data[key] = undefined;
             delete data[key];
-            AsyncStorage.setItem(DECKS, JSON.stringify(data));
+            AsyncStorage.setItem(FLASHCARD_KEY, JSON.stringify(data));
         })
 }

@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {View, Text, TouchableOpacity, StyleSheet, Dimensions} from 'react-native'
 import {connect} from 'react-redux';
 import {gray, purple, white} from "../utils/colors";
+import {deleteDeck} from "../actions";
+import {removeDeck} from "../utils/api";
 
 class DeckDetails extends Component{
     componentDidMount() {
@@ -12,6 +14,8 @@ class DeckDetails extends Component{
     handleDeleteDeck = () => {
         const {deck} = this.props;
         this.props.navigation.goBack();
+        //this.props.dispatch(deleteDeck(deck.id));
+        removeDeck(deck.id);
     }
 
     render() {
