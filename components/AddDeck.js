@@ -6,6 +6,7 @@ import {addDeck} from "../actions";
 import {generateUID, saveDeck} from "../utils/api";
 
 class AddDeck extends React.Component{
+
     state = {
         title: '',
     }
@@ -39,6 +40,7 @@ class AddDeck extends React.Component{
                 <TextInput
                     style={styles.textInput}
                     placeholder="Deck Title"
+                    value={this.state.title}
                     onChangeText={text => this.handleChange(text)}
                 />
                 <TouchableOpacity style={styles.addBtn} onPress={this.handleSubmit} disabled={this.state.title===''}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native';
@@ -15,6 +15,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import AddCard from "./components/AddCard";
 import NoCards from "./components/NoCards";
 import Quiz from "./components/Quiz";
+import Score from "./components/Score";
 
 const Tab = Platform.OS==='ios'?createBottomTabNavigator():createMaterialTopTabNavigator();
 const Tabs = () => (
@@ -58,19 +59,23 @@ const StackNav = () => (
         <Stack.Screen name='AddCard' component={AddCard} options={{headerTintColor:white, headerStyle:{backgroundColor:purple,}}}/>
         <Stack.Screen name='NoCards' component={NoCards} options={{headerTintColor:white, headerStyle:{backgroundColor:purple,}}}/>
         <Stack.Screen name='Quiz' component={Quiz} options={{headerTintColor:white, headerStyle:{backgroundColor:purple,}}}/>
+        <Stack.Screen name='Score' component={Score} options={{headerTintColor:white, headerStyle:{backgroundColor:purple,}}}/>
     </Stack.Navigator>
 );
-export default function App() {
-  return (
-      <Provider store={createStore(reducer)}>
-        <View>
-          <StatusBar backgroundColor={purple}/>
-        </View>
-          <NavigationContainer>
-              <StackNav />
-          </NavigationContainer>
-      </Provider>
-  );
+export default class App extends Component{
+
+    render() {
+        return (
+            <Provider store={createStore(reducer)}>
+                <View>
+                    <StatusBar backgroundColor={purple}/>
+                </View>
+                <NavigationContainer>
+                    <StackNav />
+                </NavigationContainer>
+            </Provider>
+        )
+    }
 }
 
 const styles = StyleSheet.create({
