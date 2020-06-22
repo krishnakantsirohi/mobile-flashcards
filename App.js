@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native';
@@ -16,6 +16,7 @@ import AddCard from "./components/AddCard";
 import NoCards from "./components/NoCards";
 import Quiz from "./components/Quiz";
 import Score from "./components/Score";
+import {setLocalNotification} from "./utils/api";
 
 const Tab = Platform.OS==='ios'?createBottomTabNavigator():createMaterialTopTabNavigator();
 const Tabs = () => (
@@ -62,7 +63,10 @@ const StackNav = () => (
         <Stack.Screen name='Score' component={Score} options={{headerTintColor:white, headerStyle:{backgroundColor:purple,}}}/>
     </Stack.Navigator>
 );
-export default class App extends Component{
+class App extends React.Component{
+    componentDidMount() {
+        setLocalNotification();
+    }
 
     render() {
         return (
@@ -86,3 +90,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App

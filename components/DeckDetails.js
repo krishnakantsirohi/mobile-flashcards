@@ -28,7 +28,6 @@ class DeckDetails extends Component{
 
     render() {
         const {deck} = this.props;
-
         return(
             <View style={styles.container}>
                 <View style={{alignItems:'center'}}>

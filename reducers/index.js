@@ -2,21 +2,28 @@ import {ADD_CARD, ADD_DECK, RECEIVE_DECK, DELETE_DECK} from "../actions";
 
 function decks(state = {}, action) {
     switch (action.type) {
-        case RECEIVE_DECK:
+        case RECEIVE_DECK: {
             return {
                 ...state,
                 ...action.decks,
             }
-        case ADD_DECK:
+        }
+        case ADD_DECK: {
             const {deck} = action
             return {
                 ...state,
-                [deck.id]: deck,
+                [deck.id]: {
+                    id: deck.id,
+                    title: deck.title,
+                    cards: [],
+                }
             }
-        case DELETE_DECK:
-            return Object.entries(state).filter(r=> r[0]!==action.deckID)
+        }
+        case DELETE_DECK: {
+            return Object.entries(state).filter(r => r[0] !== action.deckID)
+        }
 
-        case ADD_CARD:
+        case ADD_CARD: {
             const {deckID, card} = action;
             return {
                 ...state,
@@ -28,6 +35,7 @@ function decks(state = {}, action) {
                     ]
                 }
             }
+        }
         default:
             return state;
     }
