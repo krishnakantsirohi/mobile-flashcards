@@ -13,7 +13,7 @@ class Home extends Component{
     }
 
     render() {
-        const decks = this.props.state;
+        const {decks} = this.props;
         const ids = Object.keys(decks);
         return(
             <ScrollView>
@@ -29,7 +29,7 @@ class Home extends Component{
 
 function mapStateToProps(state) {
     return{
-        state
+        decks: state
     }
 }
 
