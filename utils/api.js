@@ -1,37 +1,9 @@
 import {AsyncStorage} from 'react-native';
-import * as Notifications from "expo";
+import * as Permissions from 'expo-permissions'
+import {Notifications} from 'expo'
 
-const FLASHCARD_KEY = 'flashcards';
-const NOTIFICATION_KEY='flashcards'
-
-const decks = {
-    '8xf0y6ziyjabvozdd253nd': {
-        id: '8xf0y6ziyjabvozdd253nd',
-        title: 'Deck 1',
-        cards: [],
-    },
-    '6ni6ok3ym7mf1p33lnez': {
-        id: '6ni6ok3ym7mf1p33lnez',
-        title: 'Deck 2',
-        cards: [],
-    },
-    'am8ehyc8byjqgar0jgpub9': {
-        id: 'am8ehyc8byjqgar0jgpub9',
-        title: 'Deck 3',
-        cards: [],
-    },
-    'loxhs1bqm25b708cmbf3g': {
-        id: 'loxhs1bqm25b708cmbf3g',
-        title: 'Deck 4',
-        cards: [],
-    },
-    'vthrdm985a262al8qx3do': {
-        id: 'vthrdm985a262al8qx3do',
-        title: 'Deck 5',
-        cards: [],
-    }
-}
-
+const FLASHCARD_KEY = 'Flashcard:Decks';
+const NOTIFICATION_KEY='Flashcard:Notifications'
 
 export function generateUID () {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
@@ -40,12 +12,15 @@ export function generateUID () {
 export function fetchDecks(){
     return AsyncStorage.getItem(FLASHCARD_KEY)
         .then(res => {
+            console.log(res)
             const data = JSON.parse(res);
+            console.log(data)
             return data;
         })
 }
 
 export function saveDeck(deck) {
+    console.log(deck)
     return AsyncStorage.mergeItem(FLASHCARD_KEY, JSON.stringify({
         [deck.id]: deck,
     }))
@@ -76,23 +51,25 @@ export function removeDeck(key){
         })
 }
 
-export const createNotification = () => ({
-    title: "Don't forget to practice",
-    body: "Your flash cards want to see you today.",
-    ios: {
-        sound: false
-    },
-    android: {
-        sound: false,
-        vibrate: false,
-        priority: "high",
-        sticky: false
+function createNotification () {
+    return {
+        title: "Don't forget to practice",
+        body: "Your flash cards want to see you today.",
+        ios: {
+            sound: false
+        },
+        android: {
+            sound: false,
+            vibrate: false,
+            priority: "high",
+            sticky: false
+        }
     }
-});
+}
 
 export const clearLocalNotification = () => {
     AsyncStorage.removeItem(NOTIFICATION_KEY).then(
-        Notifications.cancelAllScheduledNotificationsAsync()
+        Notifications.cancelAllScheduledNotificationsAsync
     );
 };
 

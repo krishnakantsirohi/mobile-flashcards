@@ -1,7 +1,7 @@
 import React from 'react';
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
-import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native';
+import { View, StatusBar, Platform } from 'react-native';
 import AddDeck from "./components/AddDeck";
 import Home from "./components/Home";
 import {purple, white} from "./utils/colors";
@@ -63,11 +63,8 @@ const StackNav = () => (
         <Stack.Screen name='Score' component={Score} options={{headerTintColor:white, headerStyle:{backgroundColor:purple,}}}/>
     </Stack.Navigator>
 );
-class App extends React.Component{
-    componentDidMount() {
-        setLocalNotification();
-    }
 
+class App extends React.Component{
     render() {
         return (
             <Provider store={createStore(reducer)}>
@@ -81,14 +78,5 @@ class App extends React.Component{
         )
     }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default App
