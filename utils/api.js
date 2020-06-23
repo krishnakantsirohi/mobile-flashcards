@@ -12,15 +12,12 @@ export function generateUID () {
 export function fetchDecks(){
     return AsyncStorage.getItem(FLASHCARD_KEY)
         .then(res => {
-            console.log(res)
             const data = JSON.parse(res);
-            console.log(data)
             return data;
         })
 }
 
 export function saveDeck(deck) {
-    console.log(deck)
     return AsyncStorage.mergeItem(FLASHCARD_KEY, JSON.stringify({
         [deck.id]: deck,
     }))
