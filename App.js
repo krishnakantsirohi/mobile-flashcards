@@ -6,6 +6,7 @@ import AddDeck from "./components/AddDeck";
 import Home from "./components/Home";
 import {purple, white} from "./utils/colors";
 import reducer from './reducers';
+import middleware from './middleware';
 import {NavigationContainer} from '@react-navigation/native';
 import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
