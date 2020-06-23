@@ -8,7 +8,7 @@ class Deck extends Component{
         const {deck} = this.props;
         return(
             <View style={styles.container}>
-                <TouchableOpacity onPress={()=>this.props.navigation.navigate(
+                <TouchableOpacity onPress={()=>this.props.navigation.push(
                     'DeckDetails', {deckID:deck.id}
                 )}>
                     <Text style={styles.deckName}>
@@ -35,10 +35,9 @@ export default connect(mapStateToProps)(Deck)
 const styles = StyleSheet.create({
     container: {
         height:120,
-        marginTop: 15,
+        marginTop: 25,
         marginLeft:15,
         marginRight: 15,
-        marginBottom: 5,
         backgroundColor: white,
         borderRadius: 10,
         shadowColor: "#000",

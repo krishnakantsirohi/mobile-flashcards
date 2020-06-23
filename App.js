@@ -6,7 +6,6 @@ import AddDeck from "./components/AddDeck";
 import Home from "./components/Home";
 import {purple, white} from "./utils/colors";
 import reducer from './reducers';
-import middleware from './middleware';
 import {NavigationContainer} from '@react-navigation/native';
 import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
@@ -18,6 +17,7 @@ import NoCards from "./components/NoCards";
 import Quiz from "./components/Quiz";
 import Score from "./components/Score";
 import {setLocalNotification} from "./utils/api";
+import Constants from "expo-constants";
 
 const Tab = Platform.OS==='ios'?createBottomTabNavigator():createMaterialTopTabNavigator();
 const Tabs = () => (
@@ -73,7 +73,7 @@ class App extends React.Component{
     render() {
         return (
             <Provider store={createStore(reducer)}>
-                <View>
+                <View style={{purple, height:Constants.statusBarHeight}}>
                     <StatusBar backgroundColor={purple}/>
                 </View>
                 <NavigationContainer>

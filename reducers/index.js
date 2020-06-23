@@ -20,7 +20,12 @@ function decks(state = {}, action) {
             }
         }
         case DELETE_DECK: {
-            return Object.entries(state).filter(r => r[0] !== action.deckID)
+            let newState = state;
+            delete newState[action.deckID]
+            console.log(newState)
+            return {
+                ...newState
+            }
         }
 
         case ADD_CARD: {

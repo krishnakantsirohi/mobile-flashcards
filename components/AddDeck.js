@@ -28,7 +28,7 @@ class AddDeck extends React.Component{
         this.setState(()=>({
             title: '',
         }))
-        this.props.navigation.push('DeckDetails',{deckID:deck.id})
+        this.props.navigation.navigate('DeckDetails',{deckID:deck.id})
     }
 
     render() {

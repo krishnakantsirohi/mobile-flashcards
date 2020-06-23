@@ -13,9 +13,9 @@ class DeckDetails extends Component{
 
     handleDeleteDeck = () => {
         const {deck} = this.props;
-        this.props.navigation.goBack();
         //this.props.dispatch(deleteDeck(deck.id));
         removeDeck(deck.id);
+        return this.props.navigation.goBack();
     }
 
     handleQuiz = () => {
